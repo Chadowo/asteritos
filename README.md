@@ -4,7 +4,7 @@
 
 Entry for the [Gosu Game Jam 5](https://itch.io/jam/gosu-game-jam-5).
 
-(The code of the jam version is probably garbage so pleaso don't bash me too much I'll work on it :()
+(The code of the jam version is probably garbage so pleaso don't bash me too much I'll work on it :( )
 
 ## Controls
 
