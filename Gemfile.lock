@@ -1,0 +1,17 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    gosu (1.4.6)
+    rake (13.0.6)
+    ruby-prof (1.6.3)
+
+PLATFORMS
+  x86_64-linux
+
+DEPENDENCIES
+  gosu (>= 1.4.6)
+  rake
+  ruby-prof
+
+BUNDLED WITH
+   2.4.19
