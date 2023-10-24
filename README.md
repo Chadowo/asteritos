@@ -1,5 +1,9 @@
 # Asteritos
 
+<p align="center">
+  <img src="/docs/media/cover-art.png" alt="Cover art"/>
+</p>
+
 [**Itch**](https://chadow.itch.io/asteritos)
 
 Entry for the [Gosu Game Jam 5](https://itch.io/jam/gosu-game-jam-5).
