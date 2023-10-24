@@ -9,7 +9,7 @@ While the core concept of asteroids is in the game it does have some different d
 (The code of the jam version is probably garbage so pleaso don't bash me too much I'll work on it :( )
 
 <p align="center">
-  <img src="/docs/media/cover-art.png" alt="Cover art"/>
+  <img src="/docs/media/screenshot-1.png" alt="Cover art"/>
 </p>
 
 ## Controls
