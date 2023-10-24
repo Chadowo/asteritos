@@ -20,10 +20,17 @@ Entry for the [Gosu Game Jam 5](https://itch.io/jam/gosu-game-jam-5).
 - Install [Gosu](https://www.libgosu.org/ruby.html) and Rake (`gem install rake`)
 - Run the following command on the folder of the game: rake
 
-## Credits
-
-Nordine Font - Liam Moniez - [Site](https://www.behance.net/agraffs)
-
 ## License
 
-This game is licensed under the [MIT](/LICENSE) license.
+### Code
+
+This game code is licensed under the [MIT](/LICENSE) license.
+
+### Art
+
+Note that all the assets (namely all the files under [assets/](/assets)) are not open-source unless explicitly said so. Check the
+credits below to see the assets licensed differently.
+
+## Credits
+
+Nordine Font - Liam Moniez - [OFL 1.1](/assets/fonts/nordine/license.txt) - [Site](https://www.behance.net/agraffs)
