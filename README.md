@@ -16,15 +16,15 @@ Entry for the [Gosu Game Jam 5](https://itch.io/jam/gosu-game-jam-5).
 
 ## How To Play
 
-- Download Ruby for your platform ([Window](https://rubyinstaller.org/), [MacOS](https://www.ruby-lang.org/en/documentation/installation/#homebrew) or [Linux](https://www.ruby-lang.org/en/documentation/installation/#apt))
-- Install [Gosu](https://www.libgosu.org/ruby.html) and Rake (`gem install rake`)
-- Run the following command on the folder of the game: rake
+1. Download Ruby for your platform ([Window](https://rubyinstaller.org/), [MacOS](https://www.ruby-lang.org/en/documentation/installation/#homebrew) or [Linux](https://www.ruby-lang.org/en/documentation/installation/#apt))
+2. Install [Gosu](https://www.libgosu.org/ruby.html) and Rake (`gem install rake`)
+3. Run the following command on the folder of the game: `rake`
 
 ## License
 
 ### Code
 
-This game code is licensed under the [MIT](/LICENSE) license.
+This game's code is licensed under the [MIT license](/LICENSE).
 
 ### Art
 
@@ -33,4 +33,4 @@ credits below to see the assets licensed differently.
 
 ## Credits
 
-Nordine Font - Liam Moniez - [OFL 1.1](/assets/fonts/nordine/license.txt) - [Site](https://www.behance.net/agraffs)
+Nordine Font - Liam Moniez - [OFL 1.1 License](/assets/fonts/nordine/license.txt) - [Site](https://www.behance.net/agraffs)
