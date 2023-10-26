@@ -2,9 +2,7 @@
 
 ![GitHub release (with filter)](https://img.shields.io/github/v/release/chadowo/asteritos?style=flat-square) ![GitHub](https://img.shields.io/github/license/chadowo/asteritos?style=flat-square&color=blue) ![Static Badge](https://img.shields.io/badge/get%20it-green?style=flat-square&logo=itch.io&logoColor=white&label=itch.io&color=fa5c5c&link=https%3A%2F%2Fchadow.itch.io%2Fasteritos)
 
-
-
-Entry for the [Gosu Game Jam 5](https://itch.io/jam/gosu-game-jam-5). It's an simple asteroids clone.
+Entry for the [Gosu Game Jam 5](https://itch.io/jam/gosu-game-jam-5). It's a simple asteroids clone.
 While the core concept of asteroids is in the game it does have some different design choices here and there.
 
 (The code of the jam version is probably garbage so pleaso don't bash me too much I'll work on it :( )
