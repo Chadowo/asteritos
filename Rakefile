@@ -1,4 +1,6 @@
 
+require_relative 'src/version'
+
 task :default => :run
 
 desc 'Run the game'
@@ -9,4 +11,9 @@ end
 desc 'Profile the game'
 task :profile do
   sh 'bundle exec ruby-prof src/main.rb'
+end
+
+desc 'Publish the game to Itch.io'
+task :publish do
+  sh "butler push . chadow/asteritos:source-code --userversion #{AsteritosWindow::VERSION}"
 end

@@ -1,4 +1,6 @@
 
+require 'gosu'
+
 class AsteritosWindow < Gosu::Window
   MAJOR = 1
   MINOR = 0
