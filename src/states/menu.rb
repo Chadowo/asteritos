@@ -26,7 +26,7 @@ class MenuState < State
 
   def update(dt)
     @buttons.each do |btn|
-      btn.check_mouse(@window)
+      btn.check_mouse(@window) unless btn.label == 'Settings' # Not implemented yet
     end
   end
 
