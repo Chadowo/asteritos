@@ -5,23 +5,33 @@ class MenuState < State
   def initialize(window)
     @window = window
 
-    @bg = Gosu::Image.new('assets/sprites/bg.png')
     @font = Gosu::Font.new(60, name: 'assets/fonts/nordine/nordine.ttf')
+    @bg = Gosu::Image.new('assets/sprites/bg.png')
 
     options = {
       lives: 3,
       difficulty: :normal
     }
 
-    # TODO: Can't discern too much here
+    initialize_audio
+
+    # FIXME: Adding sound really doesn't make this better to the eye...
     @buttons = [
       Button.new(@font, 'Play', -> { @window.change_state(GameState.new(@window), options) },
-                 inactive_color: Gosu::Color::WHITE, active_color: Gosu::Color::RED),
+                 inactive_color: Gosu::Color::WHITE, active_color: Gosu::Color::RED,
+                 select_sfx: @select_sfx, press_sfx: @press_sfx),
       Button.new(@font, 'Settings', -> { puts 'Going to settings...'},
-                 inactive_color: Gosu::Color.new(150, 255, 255, 255), active_color: Gosu::Color::RED),
+                 inactive_color: Gosu::Color.new(150, 255, 255, 255), active_color: Gosu::Color::RED,
+                 select_sfx: @select_sfx, press_sfx: @press_sfx),
       Button.new(@font, 'Quit', -> { @window.close },
-                 inactive_color: Gosu::Color::WHITE, active_color: Gosu::Color::RED)
+                 inactive_color: Gosu::Color::WHITE, active_color: Gosu::Color::RED,
+                 select_sfx: @select_sfx, press_sfx: @press_sfx)
     ]
+  end
+
+  def initialize_audio
+    @select_sfx = Gosu::Sample.new('assets/sfx/menu/select.wav')
+    @press_sfx = Gosu::Sample.new('assets/sfx/menu/press.wav')
   end
 
   def update(dt)
@@ -46,6 +56,10 @@ class MenuState < State
                     (@window.width / 2) - (width / 2),
                     (@window.height / 2) - (height / 2),
                     0)
+    @font.draw_text("v#{AsteritosWindow::VERSION}",
+                    510, 320, 0,
+                    0.4, 0.4,
+                    Gosu::Color::RED)
   end
 
   def draw_buttons
@@ -70,6 +84,13 @@ class MenuState < State
       # NOTE: The extra 100 on the y is to account for the title position
       btn.x = (ww / 2) - (width / 2)
       btn.y = (wh / 2 + 100) - total_height / 2 + cursor_y
+
+      @font.draw_text('<- Not implemented yet!',
+                      btn.x + 130,
+                      btn.y + 2,
+                      0,
+                      0.3,
+                      0.3) if btn.label == 'Settings'
 
       btn.draw
 
