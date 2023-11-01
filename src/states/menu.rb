@@ -1,7 +1,4 @@
 
-require_relative '../state'
-require_relative 'game'
-
 class MenuState < State
   def enter(args); end
 

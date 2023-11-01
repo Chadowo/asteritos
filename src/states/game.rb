@@ -1,6 +1,4 @@
 
-require_relative '../state'
-
 require_relative '../entities/ship'
 require_relative '../entities/asteroid'
 
