@@ -49,7 +49,7 @@ Then do the following:
 
 This game's code is licensed under the [MIT license](/LICENSE).
 
-### Art
+### Assets
 
 Note that all the assets (namely all the files under [assets/](/assets)) are not open-source unless explicitly said so. Check the
 credits below to see the assets licensed differently.
