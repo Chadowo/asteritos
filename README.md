@@ -28,6 +28,8 @@ This game is played with both a mouse and keyboard, using the mouse to navigate 
 
 <kbd>Space</kbd> - Shoot
 
+<kbd>Enter</kbd> - Pause
+
 <kbd>Escape</kbd> - Close the game
 
 ## How To Play
