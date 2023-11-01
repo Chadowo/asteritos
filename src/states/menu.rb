@@ -6,84 +6,74 @@ class MenuState < State
     @window = window
 
     @bg = Gosu::Image.new('assets/sprites/bg.png')
-
-    @main_font = Gosu::Font.new(60, name: 'assets/fonts/nordine/nordine.ttf')
-    @width = @main_font.text_width('Asteritos')
+    @font = Gosu::Font.new(60, name: 'assets/fonts/nordine/nordine.ttf')
 
     options = {
       lives: 3,
       difficulty: :normal
     }
 
-    @buttons = {
-      play: { label: 'Play', callback: -> { @window.change_state(GameState.new(@window), options) } },
-      settings: { label: 'Settings', callback: -> { puts 'Going to settings...' } },
-      quit: { label: 'Quit', callback: -> { exit(0) } }
-    }
+    # TODO: Can't discern too much here
+    @buttons = [
+      Button.new(@font, 'Play', -> { @window.change_state(GameState.new(@window), options) },
+                 inactive_color: Gosu::Color::WHITE, active_color: Gosu::Color::RED),
+      Button.new(@font, 'Settings', -> { puts 'Going to settings...'},
+                 inactive_color: Gosu::Color.new(150, 255, 255, 255), active_color: Gosu::Color::RED),
+      Button.new(@font, 'Quit', -> { @window.close },
+                 inactive_color: Gosu::Color::WHITE, active_color: Gosu::Color::RED)
+    ]
   end
 
   def update(dt)
+    @buttons.each do |btn|
+      btn.check_mouse(@window)
+    end
   end
 
   def draw
     @bg.draw(0, 0, 0)
-    @main_font.draw_text('Asteritos',
-                         (@window.width / 2) - (@width / 2),
-                         (@window.height / 2) - (60 / 2),
-                         0)
 
+    draw_title
     draw_buttons
+  end
+
+  def draw_title
+    width = @font.text_width('Asteritos')
+    height = @font.height
+
+    # Draw centered on screen
+    @font.draw_text('Asteritos',
+                    (@window.width / 2) - (width / 2),
+                    (@window.height / 2) - (height / 2),
+                    0)
   end
 
   def draw_buttons
     ww = @window.width
     wh = @window.height
 
-    margin = 16
-    scale = 0.4
-    total_height = ((60 * scale) + margin) * 3
-
     cursor_y = 0
 
-    @buttons.each do |key, value|
-      width = @main_font.text_width(value[:label]) * scale
+    scale = 0.4
+    margin = 16
+
+    total_height = ((60 * scale) + margin) * 3
+
+    @buttons.each do |btn|
+      width = btn.w * scale
+      height = btn.h * scale
+
+      btn.scale_x = scale
+      btn.scale_y = scale
 
       # Button coordinates
-      bx = (ww / 2) - (width / 2)
-      by = (wh / 2 + 100) - total_height / 2 + cursor_y
+      # NOTE: The extra 100 on the y is to account for the title position
+      btn.x = (ww / 2) - (width / 2)
+      btn.y = (wh / 2 + 100) - total_height / 2 + cursor_y
 
-      color = Gosu::Color::WHITE
+      btn.draw
 
-      # Highlight if selected
-      # TODO: Separate this logic from here
-      if @window.mouse_x > bx && @window.mouse_x < bx + width &&
-         @window.mouse_y > by && @window.mouse_y < by + 60 * scale
-        color = Gosu::Color::RED
-
-        # TODO: This shouldn't be here really
-        value[:callback].call if Gosu.button_down?(Gosu::MS_LEFT)
-      end
-
-      # As of this version an options menu isn't implemented, better to note
-      # this to the player by lowering the opacity of the button and adding a
-      # label
-      color = Gosu::Color.new(150, 255, 255, 255) if key == :settings
-      @main_font.draw_text("<- Not implemented yet!",
-                           bx + 130,
-                           by + 2,
-                           0,
-                           0.3,
-                           0.3) if key == :settings
-
-      @main_font.draw_text(value[:label],
-                           bx,
-                           by,
-                           0,
-                           scale,
-                           scale,
-                           color)
-
-      cursor_y += 60 * scale + margin
+      cursor_y += height + margin
     end
   end
 end

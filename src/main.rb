@@ -5,6 +5,8 @@ require_relative 'state'
 require_relative 'states/menu'
 require_relative 'states/game'
 
+require_relative 'ui/button'
+
 require_relative 'version'
 
 class AsteritosWindow < Gosu::Window
