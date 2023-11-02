@@ -10,7 +10,9 @@ class Ship
   FRICTION = 0.99
 
   MAX_BULLETS = 3
-  INVULNERABILITY_DURATION = 3 # Seconds
+  INVULNERABILITY_DURATION = 3.0 # Seconds
+
+  BLINK_INTERVAL = 0.2
 
   def initialize(x, y)
     @sprite = Gosu::Image.new('assets/sprites/ship.png', retro: true)
@@ -31,6 +33,9 @@ class Ship
 
     @invulnerability_timer = 0.0
     @invulnerability_color = Gosu::Color.new(100, 255, 255, 255)
+
+    @blink_timer = 0.0
+    @blink = false
   end
 
   def invulnerable?
@@ -40,6 +45,9 @@ class Ship
   def invulnerable!
     @invulnerable = true
     @invulnerability_timer = 0.0
+
+    @blink = true
+    @blink_timer = 0.0
   end
 
   def update(dt)
@@ -48,6 +56,7 @@ class Ship
 
     update_bullets(dt)
     update_invulnerability_timer(dt) if @invulnerable
+    update_blink_timer(dt) if @invulnerable
 
     wrap_movement
   end
@@ -89,8 +98,15 @@ class Ship
   def update_invulnerability_timer(dt)
     @invulnerability_timer += dt
 
-    if @invulnerability_timer >=INVULNERABILITY_DURATION
-      @invulnerable = false
+    @invulnerable = false if @invulnerability_timer >= INVULNERABILITY_DURATION
+  end
+
+  def update_blink_timer(dt)
+    @blink_timer += dt
+
+    if @blink_timer >= BLINK_INTERVAL
+      @blink = !@blink
+      @blink_timer = 0.0
     end
   end
 
@@ -125,12 +141,14 @@ class Ship
   def draw
     draw_bullets
 
-    # TODO: Flashing
     if @invulnerable
+      # Blink between a transparent color and opaque
+      color = @blink ? Gosu::Color::WHITE : @invulnerability_color
+
       @sprite.draw_rot(@x, @y, 0,
                        @direction, 0.5, 0.5,
                        1.0, 1.0,
-                       @invulnerability_color)
+                       color)
     else
       @sprite.draw_rot(@x, @y, 0, @direction)
     end

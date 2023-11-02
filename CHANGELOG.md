@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Now the player ship properly blinks when invulnerable.
+
 ## [1.1.2] - 2023-11-02
 
 Another quick patch to fix a really small bug, I'm a dummy sorry.
