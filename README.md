@@ -36,7 +36,7 @@ This game is played with both a mouse and keyboard, using the mouse to navigate 
 
 ### Download
 
-Either download the game from the [releases](https://github.com/Chadowo/asteritos/releases) here on Github or from the [Itch page](https://chadow.itch.io/asteritos).
+Either download the game from the [releases](https://github.com/Chadowo/asteritos/releases) here on Github or from the [Itch.io page](https://chadow.itch.io/asteritos).
 Then do the following:
 
 1. Download [Ruby](https://www.ruby-lang.org/) for your platform ([Window](https://rubyinstaller.org/), [MacOS](https://www.ruby-lang.org/en/documentation/installation/#homebrew) or [Linux](https://www.ruby-lang.org/en/documentation/installation/#apt))
