@@ -2,14 +2,15 @@
 require_relative 'bullet'
 
 class Ship
-  attr_accessor :invulnerable
-  attr_reader :x, :y, :w, :h, :radius, :bullets
+  attr_accessor :x, :y, :invulnerable
+  attr_reader :w, :h, :radius, :bullets
 
   SPEED = 100
   MANEUVERABILITY = 300
   FRICTION = 0.99
 
   MAX_BULLETS = 3
+  INVULNERABILITY_DURATION = 3 # Seconds
 
   def initialize(x, y)
     @sprite = Gosu::Image.new('assets/sprites/ship.png', retro: true)
@@ -32,6 +33,10 @@ class Ship
     @invulnerability_color = Gosu::Color.new(100, 255, 255, 255)
   end
 
+  def invulnerable?
+    @invulnerable
+  end
+
   def invulnerable!
     @invulnerable = true
     @invulnerability_timer = 0.0
@@ -40,9 +45,18 @@ class Ship
   def update(dt)
     handle_input(dt)
     movement(dt)
+
     update_bullets(dt)
+    update_invulnerability_timer(dt) if @invulnerable
 
     wrap_movement
+  end
+
+  def button_down(key)
+    case key
+    when Gosu::KB_SPACE
+      shoot if (@bullets.count + 1) <= MAX_BULLETS
+    end
   end
 
   def handle_input(dt)
@@ -72,6 +86,14 @@ class Ship
     @bullets.delete_if(&:dead?)
   end
 
+  def update_invulnerability_timer(dt)
+    @invulnerability_timer += dt
+
+    if @invulnerability_timer >=INVULNERABILITY_DURATION
+      @invulnerable = false
+    end
+  end
+
   def wrap_movement
     # NOTE: substract the checks against the right and bottom bounds since we're
     #       drawing the ship with its origin as the center of the image
@@ -88,13 +110,6 @@ class Ship
       @y = 0
     elsif @y + @h <= 0
       @y = AsteritosWindow::WINDOW_HEIGHT
-    end
-  end
-
-  def button_down(key)
-    case key
-    when Gosu::KB_SPACE
-      shoot if (@bullets.count + 1) <= MAX_BULLETS
     end
   end
 
