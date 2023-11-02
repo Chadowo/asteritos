@@ -38,27 +38,11 @@ class Ship
   end
 
   def update(dt)
+    handle_input(dt)
     movement(dt)
     update_bullets(dt)
-    handle_input(dt)
 
     wrap_movement
-  end
-
-  def button_down(key)
-    case key
-    when Gosu::KB_SPACE
-      shoot if (@bullets.count + 1) <= MAX_BULLETS
-    end
-  end
-
-  def update_bullets(dt)
-    @bullets.each do |bullet|
-      bullet.update(dt)
-    end
-
-    # Trim bullet array
-    @bullets.delete_if(&:dead?)
   end
 
   def handle_input(dt)
@@ -79,6 +63,15 @@ class Ship
     @y_vel *= FRICTION
   end
 
+  def update_bullets(dt)
+    @bullets.each do |bullet|
+      bullet.update(dt)
+    end
+
+    # Trim bullet array
+    @bullets.delete_if(&:dead?)
+  end
+
   def wrap_movement
     # NOTE: substract the checks against the right and bottom bounds since we're
     #       drawing the ship with its origin as the center of the image
@@ -95,6 +88,13 @@ class Ship
       @y = 0
     elsif @y + @h <= 0
       @y = AsteritosWindow::WINDOW_HEIGHT
+    end
+  end
+
+  def button_down(key)
+    case key
+    when Gosu::KB_SPACE
+      shoot if (@bullets.count + 1) <= MAX_BULLETS
     end
   end
 
