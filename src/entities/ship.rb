@@ -12,7 +12,7 @@ class Ship
   MAX_BULLETS = 3
   INVULNERABILITY_DURATION = 3.0 # Seconds
 
-  BLINK_INTERVAL = 0.2
+  BLINK_INTERVAL = 0.2 # 200ms
 
   def initialize(x, y)
     @sprite = Gosu::Image.new('assets/sprites/ship.png', retro: true)
@@ -142,7 +142,7 @@ class Ship
     draw_bullets
 
     if @invulnerable
-      # Blink between a transparent color and opaque
+      # Blink between being transparent and opaque
       color = @blink ? Gosu::Color::WHITE : @invulnerability_color
 
       @sprite.draw_rot(@x, @y, 0,
