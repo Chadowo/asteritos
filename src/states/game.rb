@@ -140,7 +140,7 @@ class GameState < State
   def update_gameover_screen
     return unless Gosu.button_down?(Gosu::KB_RETURN)
 
-    save_score
+    save_score(@score) if @score > @highscore
     @window.change_state(MenuState.new(@window), nil)
   end
 
@@ -234,9 +234,8 @@ class GameState < State
                     scale, scale)
   end
 
-  def save_score
+  def save_score(score)
     Dir.mkdir('data') unless Dir.exist?('data')
-
-    File.write('data/score.txt', @score) if @score > @highscore
+    File.write('data/score.txt', score)
   end
 end
