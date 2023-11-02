@@ -123,10 +123,10 @@ class GameState < State
 
   def button_down(key)
     @player.button_down(key)
-    check_pause(key)
+    handle_pause(key)
   end
 
-  def check_pause(key)
+  def handle_pause(key)
     return unless key == Gosu::KB_RETURN && !@gameover
 
     # So when the pause starts the text will always be shown
