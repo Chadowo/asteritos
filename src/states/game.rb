@@ -205,10 +205,8 @@ class GameState < State
     @font.draw_text('SCORE', 100, 20, 0)
     @font.draw_text(@score.to_s, 120, 35, 0, 1.0, 1.0, score_color)
 
-    if @highscore
-      @font.draw_text('HIGH-SCORE', 180, 20, 0)
-      @font.draw_text(@highscore.to_s, 220, 35, 0)
-    end
+    @font.draw_text('HIGH-SCORE', 180, 20, 0)
+    @font.draw_text(@highscore.to_s, 220, 35, 0)
 
     @font.draw_text(Gosu.fps.to_s,
                     AsteritosWindow::WINDOW_WIDTH - @font.text_width(Gosu.fps.to_s) - 3,
