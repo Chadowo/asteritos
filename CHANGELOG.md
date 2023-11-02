@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.2] - 2023-11-02
+
 Another quick patch to fix a really small bug, I'm a dummy sorry.
 
 ### Fixed
@@ -35,6 +37,7 @@ Quick patch to fix a little something.
 This is the version presented for the [Gosu Game Jam 5](https://itch.io/jam/gosu-game-jam-5).
 
 [unreleased]: https://github.com/chadowo/asteritos/compare/v1.1.0...HEAD
+[1.1.2]: https://github.com/chadowo/asteritos/compare/v1.1.1...v1.1.2
 [1.1.1]: https://github.com/chadowo/asteritos/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/chadowo/asteritos/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/Chadowo/asteritos/releases/tag/v1.0.0
