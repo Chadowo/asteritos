@@ -277,6 +277,6 @@ class GameState < State
   def save_score
     Dir.mkdir('data') unless Dir.exist?('data')
 
-    File.write('data/score.txt', @score)
+    File.write('data/score.txt', @score) if @score > @highscore
   end
 end
