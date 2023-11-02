@@ -19,6 +19,12 @@ class Bullet
     @dead = false
   end
 
+  def dead?
+    return true if @dead
+
+    false
+  end
+
   def update(dt)
     @x += Gosu.offset_x(@direction, 2) * BULLET_SPEED * dt
     @y += Gosu.offset_y(@direction, 2) * BULLET_SPEED * dt
@@ -30,12 +36,6 @@ class Bullet
     then
       @dead = true
     end
-  end
-
-  def dead?
-    return true if @dead
-
-    false
   end
 
   def draw
