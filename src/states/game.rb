@@ -113,7 +113,9 @@ class GameState < State
       asteroid.update(dt)
     end
 
-    asteroids_spawn_update
+    # Regenerate asteroids if necessary to keep the total asteroid
+    # count equal to the required amount
+    generate_asteroids(1) if (@asteroids.count + 1) < ASTEROIDS_AMOUNT
 
     player_collisions
     bullets_collisions
@@ -140,12 +142,6 @@ class GameState < State
 
     save_score
     @window.change_state(MenuState.new(@window), nil)
-  end
-
-  # Regenerate asteroids if necessary to keep the total asteroid
-  # count equal to the required amount
-  def asteroids_spawn_update
-    generate_asteroids(1) if (@asteroids.count + 1) < ASTEROIDS_AMOUNT
   end
 
   def player_collisions
@@ -213,7 +209,6 @@ class GameState < State
       @font.draw_text('HIGH-SCORE', 180, 20, 0)
       @font.draw_text(@highscore.to_s, 220, 35, 0)
     end
-
 
     @font.draw_text(Gosu.fps.to_s,
                     AsteritosWindow::WINDOW_WIDTH - @font.text_width(Gosu.fps.to_s) - 3,
