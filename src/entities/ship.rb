@@ -13,7 +13,6 @@ class Ship
 
   def initialize(x, y)
     @sprite = Gosu::Image.new('assets/sprites/ship.png', retro: true)
-    @inv_color = Gosu::Color.new(100, 255, 255, 255)
 
     @x = x
     @y = y
@@ -28,15 +27,18 @@ class Ship
     @direction = 360
 
     @bullets = []
+
+    @invulnerability_timer = 0.0
+    @invulnerability_color = Gosu::Color.new(100, 255, 255, 255)
+  end
+
+  def invulnerable!
+    @invulnerable = true
+    @invulnerability_timer = 0.0
   end
 
   def update(dt)
-    @x += @x_vel * dt
-    @y += @y_vel * dt
-
-    @x_vel *= FRICTION
-    @y_vel *= FRICTION
-
+    movement(dt)
     update_bullets(dt)
     handle_input(dt)
 
@@ -66,7 +68,15 @@ class Ship
       @direction += MANEUVERABILITY * dt
     end
 
-    move if Gosu.button_down?(Gosu::KB_W)
+    thrust if Gosu.button_down?(Gosu::KB_W)
+  end
+
+  def movement(dt)
+    @x += @x_vel * dt
+    @y += @y_vel * dt
+
+    @x_vel *= FRICTION
+    @y_vel *= FRICTION
   end
 
   def wrap_movement
@@ -88,7 +98,7 @@ class Ship
     end
   end
 
-  def move
+  def thrust
     @x_vel = Gosu.offset_x(@direction, 2) * SPEED
     @y_vel = Gosu.offset_y(@direction, 2) * SPEED
   end
@@ -105,7 +115,7 @@ class Ship
       @sprite.draw_rot(@x, @y, 0,
                        @direction, 0.5, 0.5,
                        1.0, 1.0,
-                       @inv_color)
+                       @invulnerability_color)
     else
       @sprite.draw_rot(@x, @y, 0, @direction)
     end
