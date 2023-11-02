@@ -5,8 +5,10 @@ class Ship
   attr_accessor :invulnerable
   attr_reader :x, :y, :w, :h, :radius, :bullets
 
+  SPEED = 100
   MANEUVERABILITY = 300
   FRICTION = 0.99
+
   MAX_BULLETS = 3
 
   def initialize(x, y)
@@ -35,8 +37,9 @@ class Ship
     @x_vel *= FRICTION
     @y_vel *= FRICTION
 
-    handle_input(dt)
     update_bullets(dt)
+    handle_input(dt)
+
     wrap_movement
   end
 
@@ -53,7 +56,7 @@ class Ship
     end
 
     # Trim bullet array
-    @bullets.delete_if { |bullet| bullet.dead? }
+    @bullets.delete_if(&:dead?)
   end
 
   def handle_input(dt)
@@ -63,14 +66,12 @@ class Ship
       @direction += MANEUVERABILITY * dt
     end
 
-    if Gosu.button_down?(Gosu::KB_W)
-      move
-    end
+    move if Gosu.button_down?(Gosu::KB_W)
   end
 
   def wrap_movement
     # NOTE: substract the checks against the right and bottom bounds since we're
-    #       drawing the ship with it's origin as the center of the image
+    #       drawing the ship with its origin as the center of the image
 
     # Left right
     if @x - (@w * 0.5) >= AsteritosWindow::WINDOW_WIDTH
@@ -80,7 +81,7 @@ class Ship
     end
 
     # Up down
-    if @y - (@h * 0.5)>= AsteritosWindow::WINDOW_HEIGHT
+    if @y - (@h * 0.5) >= AsteritosWindow::WINDOW_HEIGHT
       @y = 0
     elsif @y + @h <= 0
       @y = AsteritosWindow::WINDOW_HEIGHT
@@ -88,8 +89,8 @@ class Ship
   end
 
   def move
-    @x_vel = Gosu.offset_x(@direction, 2) * 100
-    @y_vel = Gosu.offset_y(@direction, 2) * 100
+    @x_vel = Gosu.offset_x(@direction, 2) * SPEED
+    @y_vel = Gosu.offset_y(@direction, 2) * SPEED
   end
 
   def shoot
@@ -97,22 +98,20 @@ class Ship
   end
 
   def draw
+    draw_bullets
+
     # TODO: Flashing
-    unless @invulnerable
-      @sprite.draw_rot(@x, @y, 0, @direction)
-    else
+    if @invulnerable
       @sprite.draw_rot(@x, @y, 0,
                        @direction, 0.5, 0.5,
                        1.0, 1.0,
                        @inv_color)
+    else
+      @sprite.draw_rot(@x, @y, 0, @direction)
     end
-
-    draw_bullets
   end
 
   def draw_bullets
-    @bullets.each do |bullet|
-      bullet.draw
-    end
+    @bullets.each(&:draw)
   end
 end
