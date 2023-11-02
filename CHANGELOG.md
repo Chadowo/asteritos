@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+Another quick patch to fix a really small bug, I'm a dummy sorry.
+
+### Fixed
+
+- Destroying small asteroids (the really small ones) doesn't give any score at all.
+
 ## [1.1.1] - 2023-11-02
 
 Quick patch to fix a little something.

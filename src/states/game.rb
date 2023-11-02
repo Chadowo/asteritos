@@ -79,6 +79,7 @@ class GameState < State
 
   def split_asteroid(asteroid)
     @asteroid_destroyed_sfx.play
+    @score += 50
 
     if (asteroid.size - 1).negative?
       @asteroids.delete(asteroid)
@@ -88,8 +89,6 @@ class GameState < State
     @asteroids.push(Asteroid.new(asteroid.x, asteroid.y, asteroid.size - 1),
                     Asteroid.new(asteroid.x, asteroid.y, asteroid.size - 1))
     @asteroids.delete(asteroid)
-
-    @score += 50
   end
 
   def reset_player
