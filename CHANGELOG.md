@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.1] - 2023-11-02
+
+Quick patch to fix a little something.
+
 ### Fixed
 
 - Score was saved regardless of whether it was a highscore or not.
@@ -25,5 +29,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 This is the version presented for the [Gosu Game Jam 5](https://itch.io/jam/gosu-game-jam-5).
 
 [unreleased]: https://github.com/chadowo/asteritos/compare/v1.1.0...HEAD
+[1.1.1]: https://github.com/chadowo/asteritos/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/chadowo/asteritos/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/Chadowo/asteritos/releases/tag/v1.0.0
