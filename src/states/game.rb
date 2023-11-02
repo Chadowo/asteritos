@@ -2,10 +2,11 @@
 require_relative '../entities/ship'
 require_relative '../entities/asteroid'
 
+require_relative '../ui/blink_text'
+
 # FIXME: There's way too much logic in here
 class GameState < State
   MINIMUM_SHIP_DISTANCE = 250
-  INV_SECONDS = 3
   ASTEROIDS_AMOUNT = 6
 
   # TODO: Change the game based on the options
@@ -17,12 +18,15 @@ class GameState < State
 
   # TODO: Organize this
   def initialize(window)
-    default_options = {lives: 3,
-                       difficulty: :normal}
+    default_options = { lives: 3,
+                        difficulty: :normal }
 
     @options = default_options
 
     @window = window
+
+    @font = Gosu::Font.new(22, name: 'assets/fonts/nordine/nordine.ttf')
+    @bg = Gosu::Image.new('assets/sprites/bg.png')
 
     @score = 0
     @highscore = if File.exist?('data/score.txt')
@@ -35,11 +39,9 @@ class GameState < State
     @pause = false
     @gameover = false
 
-    @timer_inv = 0
-
-    # Control the blink of the pause text
-    @timer_blink = 0
-    @blink = false
+    @pause_text = BlinkingText.new(@font, 'PAUSED', 0.4)
+    @pause_text.scale_x = 1.4
+    @pause_text.scale_y = 1.4
 
     initialize_entities
     initialize_audio
@@ -48,12 +50,9 @@ class GameState < State
   end
 
   def initialize_entities
-    @font = Gosu::Font.new(22, name: 'assets/fonts/nordine/nordine.ttf')
-
     @player = Ship.new(AsteritosWindow::WINDOW_WIDTH / 2,
                        AsteritosWindow::WINDOW_HEIGHT / 2)
     @asteroids = []
-    @bg = Gosu::Image.new('assets/sprites/bg.png')
   end
 
   def initialize_audio
@@ -81,6 +80,7 @@ class GameState < State
     @asteroid_destroyed_sfx.play
     @score += 50
 
+    # The asteroid is too small to split
     if (asteroid.size - 1).negative?
       @asteroids.delete(asteroid)
       return
@@ -92,14 +92,14 @@ class GameState < State
   end
 
   def reset_player
-    @player = Ship.new(AsteritosWindow::WINDOW_WIDTH / 2,
-                       AsteritosWindow::WINDOW_HEIGHT / 2)
-    @player.invulnerable = true
+    @player.x = AsteritosWindow::WINDOW_WIDTH / 2
+    @player.y = AsteritosWindow::WINDOW_HEIGHT / 2
+    @player.invulnerable!
   end
 
   def update(dt)
     if @pause
-      update_text_blink_timer(dt)
+      @pause_text.update(dt)
       return
     end
 
@@ -117,8 +117,6 @@ class GameState < State
 
     player_collisions
     bullets_collisions
-
-    update_invulnerability_timer(dt)
   end
 
   def button_down(key)
@@ -130,8 +128,8 @@ class GameState < State
     return unless key == Gosu::KB_RETURN && !@gameover
 
     # So when the pause starts the text will always be shown
-    @timer_blink = 0
-    @blink = false
+    @pause_text.timer = 0.0
+    @pause_text.blink = false
 
     @pause_sfx.play
     @pause = !@pause
@@ -153,7 +151,7 @@ class GameState < State
   def player_collisions
     colliding_asteroid = @asteroids.find { |asteroid| collision?(@player, asteroid) }
 
-    if colliding_asteroid && !@player.invulnerable
+    if colliding_asteroid && !@player.invulnerable?
       @player_destroyed_sfx.play
       split_asteroid(colliding_asteroid)
 
@@ -175,25 +173,6 @@ class GameState < State
           split_asteroid(asteroid)
         end
       end
-    end
-  end
-
-  def update_invulnerability_timer(dt)
-    @timer_inv += dt if @player.invulnerable
-
-    if @timer_inv >= INV_SECONDS
-      @player.invulnerable = false
-      @timer_inv = 0
-    end
-  end
-
-  def update_text_blink_timer(dt)
-    @timer_blink += dt
-
-    # Blink in intervals of 400ms
-    if @timer_blink >= 0.4
-      @blink = !@blink
-      @timer_blink = 0
     end
   end
 
@@ -243,20 +222,9 @@ class GameState < State
   end
 
   def draw_pause
-    msg = 'Paused'
-    scale = 1.5
-    color = @blink ? Gosu::Color.new(0, 0, 0, 0) : Gosu::Color::WHITE
-
-    width = @font.text_width(msg) * scale
-    height = @font.height * scale
-
-    @font.draw_text(msg,
-                    (AsteritosWindow::WINDOW_WIDTH / 2) - (width / 2),
-                    (AsteritosWindow::WINDOW_HEIGHT / 4) - (height / 2),
-                    0,
-                    scale,
-                    scale,
-                    color)
+    @pause_text.draw((AsteritosWindow::WINDOW_WIDTH / 2) - (@pause_text.w / 2),
+                     (AsteritosWindow::WINDOW_HEIGHT / 4) - (@pause_text.h / 2),
+                     0)
   end
 
   def draw_gameover
