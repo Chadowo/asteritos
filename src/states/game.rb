@@ -179,7 +179,7 @@ class GameState < State
 
     dist = Math.sqrt((dist_x * dist_x) + (dist_y * dist_y))
 
-    return dist <= obj1.radius + obj2.radius
+    dist <= obj1.radius + obj2.radius
   end
 
   def draw
