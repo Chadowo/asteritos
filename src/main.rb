@@ -1,5 +1,9 @@
 
-require 'gosu'
+if RUBY_ENGINE == 'mruby'
+  require File.expand_path('mruby', File.dirname(__FILE__))
+else
+  require 'gosu'
+end
 
 require_relative 'state'
 require_relative 'states/menu'
@@ -22,6 +26,10 @@ class AsteritosWindow < Gosu::Window
     @last_ms = 0.0
 
     @current_state = MenuState.new(self)
+  end
+
+  def needs_cursor?
+    true
   end
 
   def change_state(state, args)

@@ -64,8 +64,8 @@ class GameState < State
   def generate_asteroids(num)
     # Populate asteroids
     num.times do
-      asteroid = Asteroid.new(rand(0..AsteritosWindow::WINDOW_WIDTH),
-                              rand(0..AsteritosWindow::WINDOW_HEIGHT),
+      asteroid = Asteroid.new(MRuby.rand(0..AsteritosWindow::WINDOW_WIDTH),
+                              MRuby.rand(0..AsteritosWindow::WINDOW_HEIGHT),
                               2)
 
       # Don't generate asteroids close enough to spawn-kill the player
@@ -236,6 +236,6 @@ class GameState < State
 
   def save_score(score)
     Dir.mkdir('data') unless Dir.exist?('data')
-    File.write('data/score.txt', score)
+    File.open('data/score.txt', 'w') { |file| file.write(@score) }
   end
 end

@@ -25,8 +25,8 @@ class Asteroid
   end
 
   def random_velocity(min, max)
-    @velocity = rand(min..max)
-    @direction = rand(0..360)
+    @velocity = MRuby.rand(min..max)
+    @direction = MRuby.rand(0..360)
   end
 
   def update(dt)
