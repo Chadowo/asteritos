@@ -1,9 +1,7 @@
 
-if RUBY_ENGINE == 'mruby'
-  require File.expand_path('mruby', File.dirname(__FILE__))
-else
-  require 'gosu'
-end
+require 'gosu' unless RUBY_ENGINE == 'mruby'
+
+require File.expand_path('mruby', File.dirname(__FILE__))
 
 require_relative 'state'
 require_relative 'states/menu'
