@@ -20,9 +20,11 @@ class MenuState < State
       Button.new(@font, 'Play', -> { @window.change_state(GameState.new(@window), options) },
                  inactive_color: Gosu::Color::WHITE, active_color: Gosu::Color::RED,
                  select_sfx: @select_sfx, press_sfx: @press_sfx),
+
       Button.new(@font, 'Settings', -> { puts 'Going to settings...'},
                  inactive_color: Gosu::Color.new(150, 255, 255, 255), active_color: Gosu::Color::RED,
                  select_sfx: @select_sfx, press_sfx: @press_sfx),
+
       Button.new(@font, 'Quit', -> { @window.close },
                  inactive_color: Gosu::Color::WHITE, active_color: Gosu::Color::RED,
                  select_sfx: @select_sfx, press_sfx: @press_sfx)
