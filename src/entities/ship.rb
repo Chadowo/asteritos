@@ -1,6 +1,4 @@
 
-require_relative 'bullet'
-
 class Ship
   attr_accessor :x, :y, :invulnerable
   attr_reader :w, :h, :radius, :bullets

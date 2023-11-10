@@ -1,9 +1,4 @@
 
-require_relative '../entities/ship'
-require_relative '../entities/asteroid'
-
-require_relative '../ui/blink_text'
-
 # FIXME: There's way too much logic in here
 class GameState < State
   MINIMUM_SHIP_DISTANCE = 250

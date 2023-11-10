@@ -3,13 +3,19 @@ require 'gosu' unless RUBY_ENGINE == 'mruby'
 
 require File.expand_path('mruby', File.dirname(__FILE__))
 
-require_relative 'state'
-require_relative 'states/menu'
-require_relative 'states/game'
+# Require everything needed
+require './src/state'
+require './src/states/menu'
+require './src/states/game'
 
-require_relative 'ui/button'
+require './src/entities/ship'
+require './src/entities/bullet'
+require './src/entities/asteroid'
 
-require_relative 'version'
+require './src/ui/button'
+require './src/ui/blink_text'
+
+require './src/version'
 
 class AsteritosWindow < Gosu::Window
   WINDOW_WIDTH = 800
