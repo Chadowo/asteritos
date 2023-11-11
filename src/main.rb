@@ -18,8 +18,6 @@ require './src/ui/blink_text'
 require './src/version'
 
 class AsteritosWindow < Gosu::Window
-  attr_accessor :resizer
-
   WINDOW_WIDTH = 800
   WINDOW_HEIGHT = 600
 
