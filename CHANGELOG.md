@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Now the game adapts to different screen sizes.
+
 ### Changed
 
 - Now the player ship properly blinks when invulnerable.
