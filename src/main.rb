@@ -6,9 +6,8 @@ unless RUBY_ENGINE == 'mruby'
   $: << 'src' # Assuming this file is executed instead of the entrypoint
 end
 
-require File.expand_path('mruby', File.dirname(__FILE__))
+require 'mruby'
 
-# Require everything needed
 require 'state'
 require 'states/menu'
 require 'states/game'
