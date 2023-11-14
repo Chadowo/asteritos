@@ -33,7 +33,7 @@ class Button
 
   # Determine if the mouse is selecting this button
   def check_mouse(window)
-    highlight(window.mouse_x, window.mouse_y)
+    highlight(window)
     click
   end
 
@@ -42,9 +42,16 @@ class Button
   #       The problem isn't new to the button addition, It seems upon further
   #       investigation that this may be related to the font, in which case there's
   #       not a lot I can do
-  def highlight(mouse_x, mouse_y)
-    if mouse_x > @x && mouse_x < @x + (@w * @scale_x) &&
-       mouse_y > @y && mouse_y < @y + (@h * @scale_y)
+  def highlight(window)
+    mouse_x = window.mouse_x
+    mouse_y = window.mouse_y
+
+    x = (@x + window.off_x) / window.scale_x.to_f
+    y = (@y + window.off_y) / window.scale_y.to_f
+
+    # FIXME: Halfways there, but I should for other solution most likely, this is plainly not elegant
+    if mouse_x >= x && mouse_x <= x + (@w * @scale_x) &&
+       mouse_y >= y && mouse_y <= y + (@h * @scale_y)
     then
       @select_sfx&.play unless @active # Unless active so it plays only one time
 

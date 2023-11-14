@@ -1,4 +1,10 @@
 
+require 'entities/ship'
+require 'entities/bullet'
+require 'entities/asteroid'
+
+require 'ui/blink_text'
+
 # FIXME: There's way too much logic in here
 class GameState < State
   MINIMUM_SHIP_DISTANCE = 250
@@ -19,12 +25,14 @@ class GameState < State
     @options = default_options
 
     @window = window
+    @logger = window.logger
 
     @font = Gosu::Font.new(22, name: 'assets/fonts/nordine/nordine.ttf')
     @bg = Gosu::Image.new('assets/sprites/bg.png')
 
     @score = 0
     @highscore = if File.exist?('data/score.txt')
+                   @logger.info('Highscore found')
                    File.read('data/score.txt').to_i
                  else
                    0
@@ -230,7 +238,9 @@ class GameState < State
   end
 
   def save_score(score)
+    @logger.info("Saving score (#{score}) as highscore on 'data/score.txt'")
+
     Dir.mkdir('data') unless Dir.exist?('data')
-    File.open('data/score.txt', 'w') { |file| file.write(@score) }
+    File.open('data/score.txt', 'w') { |file| file.write(score) }
   end
 end

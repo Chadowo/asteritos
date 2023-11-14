@@ -1,4 +1,6 @@
 
+require 'ui/button'
+
 class MenuState < State
   def enter(args); end
 
@@ -55,8 +57,8 @@ class MenuState < State
 
     # Draw centered on screen
     @font.draw_text('Asteritos',
-                    (@window.width / 2) - (width / 2),
-                    (@window.height / 2) - (height / 2),
+                    (AsteritosWindow::WINDOW_WIDTH / 2) - (width / 2),
+                    (AsteritosWindow::WINDOW_HEIGHT / 2) - (height / 2),
                     0)
     @font.draw_text("v#{AsteritosWindow::VERSION}",
                     510, 320, 0,
@@ -65,15 +67,15 @@ class MenuState < State
   end
 
   def draw_buttons
-    ww = @window.width
-    wh = @window.height
+    ww = AsteritosWindow::WINDOW_WIDTH
+    wh = AsteritosWindow::WINDOW_HEIGHT
 
     cursor_y = 0
 
     scale = 0.4
     margin = 16
 
-    total_height = ((60 * scale) + margin) * 3
+    total_height = ((@font.height * scale) + margin) * 3
 
     @buttons.each do |btn|
       width = btn.w * scale
