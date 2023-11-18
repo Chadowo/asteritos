@@ -1,7 +1,7 @@
 
 unless RUBY_ENGINE == 'mruby'
-  require 'gosu' 
-  require 'logger' 
+  require 'gosu'
+  require 'logger'
 
   $: << 'src' # Assuming this file is executed instead of the entrypoint
 end
@@ -22,7 +22,7 @@ class AsteritosWindow < Gosu::Window
   WINDOW_HEIGHT = 600
 
   def initialize
-    super(WINDOW_WIDTH, WINDOW_HEIGHT, resizable: true)
+    super(WINDOW_WIDTH, WINDOW_HEIGHT)
     self.caption = 'Asteritos'
 
     # Timing
@@ -91,11 +91,7 @@ class AsteritosWindow < Gosu::Window
   end
 
   def draw
-    Gosu.translate(@off_x, @off_y) do
-      Gosu.scale(@scale_x, @scale_y, 0.5, 0.5) do
-        @current_state.draw
-      end
-    end
+    @current_state.draw
   end
 end
 

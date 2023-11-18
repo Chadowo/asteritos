@@ -46,9 +46,6 @@ class Button
     mouse_x = window.mouse_x
     mouse_y = window.mouse_y
 
-    x = (@x + window.off_x) / window.scale_x.to_f
-    y = (@y + window.off_y) / window.scale_y.to_f
-
     # FIXME: Halfways there, but I should for other solution most likely, this is plainly not elegant
     if mouse_x >= x && mouse_x <= x + (@w * @scale_x) &&
        mouse_y >= y && mouse_y <= y + (@h * @scale_y)
