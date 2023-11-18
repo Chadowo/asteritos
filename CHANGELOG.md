@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.3] - 2023-11-18
+
 ### Added
 
 - Animation for when the player is moving.
@@ -45,6 +47,7 @@ Quick patch to fix a little something.
 This is the version presented for the [Gosu Game Jam 5](https://itch.io/jam/gosu-game-jam-5).
 
 [unreleased]: https://github.com/chadowo/asteritos/compare/v1.1.0...HEAD
+[1.1.3]: https://github.com/chadowo/asteritos/compare/v1.1.2...v1.1.3
 [1.1.2]: https://github.com/chadowo/asteritos/compare/v1.1.1...v1.1.2
 [1.1.1]: https://github.com/chadowo/asteritos/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/chadowo/asteritos/compare/v1.0.0...v1.1.0
