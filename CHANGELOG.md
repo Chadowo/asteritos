@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Animation for when the player is moving.
+
 ### Changed
 
 - Now the player ship properly blinks when invulnerable.

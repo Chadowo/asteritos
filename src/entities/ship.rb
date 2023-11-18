@@ -1,4 +1,6 @@
 
+require 'aniruby'
+
 class Ship
   attr_accessor :x, :y, :invulnerable
   attr_reader :w, :h, :radius, :bullets
@@ -13,12 +15,15 @@ class Ship
   BLINK_INTERVAL = 0.2 # 200ms
 
   def initialize(x, y)
-    @sprite = Gosu::Image.new('assets/sprites/ship.png', retro: true)
+    @idle_sprite = Gosu::Image.new('assets/sprites/ship.png', retro: true)
+    @movement_anim = AniRuby::Animation.new('assets/sprites/ship_movement.png',
+                                            32, 32, retro: true, loop: true)
+    @state = :idle
 
     @x = x
     @y = y
-    @w = @sprite.width
-    @h = @sprite.height
+    @w = @idle_sprite.width
+    @h = @idle_sprite.height
     @radius = 16
 
     @invulnerable = false
@@ -56,6 +61,8 @@ class Ship
     update_invulnerability_timer(dt) if @invulnerable
     update_blink_timer(dt) if @invulnerable
 
+    @movement_anim.update if @state == :moving
+
     wrap_movement
   end
 
@@ -73,7 +80,12 @@ class Ship
       @direction += MANEUVERABILITY * dt
     end
 
-    thrust if Gosu.button_down?(Gosu::KB_W)
+    if Gosu.button_down?(Gosu::KB_W)
+      @state = :moving
+      thrust
+    else
+      @state = :idle
+    end
   end
 
   def movement(dt)
@@ -143,12 +155,25 @@ class Ship
       # Blink between being transparent and opaque
       color = @blink ? Gosu::Color::WHITE : @invulnerability_color
 
-      @sprite.draw_rot(@x, @y, 0,
-                       @direction, 0.5, 0.5,
-                       1.0, 1.0,
-                       color)
+      case @state
+      when :idle
+        @idle_sprite.draw_rot(@x, @y, 0,
+                         @direction, 0.5, 0.5,
+                         1.0, 1.0,
+                         color)
+      when :moving
+        @movement_anim.draw_rot(@x, @y, 0,
+                                @direction, 0.5, 0.5,
+                                1.0, 1.0,
+                                color)
+      end
     else
-      @sprite.draw_rot(@x, @y, 0, @direction)
+      case @state
+      when :idle
+        @idle_sprite.draw_rot(@x, @y, 0, @direction)
+      when :moving
+        @movement_anim.draw_rot(@x, @y, 0, @direction)
+      end
     end
   end
 

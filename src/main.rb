@@ -3,7 +3,9 @@ unless RUBY_ENGINE == 'mruby'
   require 'gosu'
   require 'logger'
 
-  $: << 'src' # Assuming this file is executed instead of the entrypoint
+  # Assuming this file is executed instead of the entrypoint
+  $: << 'src'
+  $: << 'src/libs/aniruby'
 end
 
 require 'mruby'
