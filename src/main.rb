@@ -66,7 +66,6 @@ class AsteritosWindow < Gosu::Window
     @current_state.update(@dt)
 
     update_delta
-    update_dimensions
 
     self.close if Gosu.button_down?(Gosu::KB_ESCAPE)
   end
@@ -79,17 +78,6 @@ class AsteritosWindow < Gosu::Window
     current_time = Gosu.milliseconds / 1000.0
     @dt = [current_time - @last_ms, 0.25].min
     @last_ms = current_time
-  end
-
-  def update_dimensions
-    scale_x = self.width / WINDOW_WIDTH.to_f
-    scale_y = self.height / WINDOW_HEIGHT.to_f
-    scale = [scale_x, scale_y].min
-
-    @off_x = (scale_x - scale) * (WINDOW_WIDTH / 2)
-    @off_y = (scale_y - scale) * (WINDOW_HEIGHT / 2)
-    @scale_x = scale
-    @scale_y = scale
   end
 
   def draw
