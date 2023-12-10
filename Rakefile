@@ -1,4 +1,3 @@
-
 require 'gosu' # Version file will error out otherwise
 require_relative 'src/version'
 

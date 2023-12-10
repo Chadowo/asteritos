@@ -1,4 +1,3 @@
-
 require 'ui/button'
 
 class MenuState < State

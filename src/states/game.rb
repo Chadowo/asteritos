@@ -1,4 +1,3 @@
-
 require 'entities/ship'
 require 'entities/bullet'
 require 'entities/asteroid'

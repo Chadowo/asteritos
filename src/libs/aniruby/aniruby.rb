@@ -1,4 +1,3 @@
-
 require 'aniruby/version'
 
 require 'aniruby/frame'

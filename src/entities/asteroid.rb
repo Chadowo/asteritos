@@ -1,4 +1,3 @@
-
 class Asteroid
   attr_accessor :velocity, :size
   attr_reader :x, :y, :w, :h, :radius

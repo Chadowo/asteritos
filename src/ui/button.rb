@@ -1,4 +1,3 @@
-
 class Button
   attr_accessor :x, :y, :scale_x, :scale_y
   attr_reader :label, :w, :h

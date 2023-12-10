@@ -1,4 +1,3 @@
-
 class BlinkingText
   attr_accessor :label, :interval, :blink, :scale_x, :scale_y, :timer
 

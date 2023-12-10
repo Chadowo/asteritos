@@ -1,4 +1,3 @@
-
 class State
   def enter; end
 

@@ -1,4 +1,3 @@
-
 require 'aniruby'
 
 class Ship

@@ -1,4 +1,3 @@
-
 unless RUBY_ENGINE == 'mruby'
   require 'gosu'
   require 'logger'

@@ -1,4 +1,3 @@
-
 class Bullet
   attr_reader :x, :y, :w, :h, :radius
 
