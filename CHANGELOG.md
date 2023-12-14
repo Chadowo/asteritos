@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Now the bundle with Gosu-MRuby-Wrapper uses the fused way of loading.
+
 ## [1.1.3] - 2023-11-18
 
 ### Added
