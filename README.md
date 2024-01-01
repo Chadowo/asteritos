@@ -24,7 +24,7 @@ That's it, it's not a particularly taxing game at all :).
 
 This game is played with both a mouse and keyboard, using the mouse to navigate the menus.
 
-<kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd> - Movement
+<kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd> or <kbd>↑</kbd> <kbd>←</kbd> <kbd>→</kbd> <kbd>↓</kbd> - Movement
 
 <kbd>Space</kbd> - Shoot
 

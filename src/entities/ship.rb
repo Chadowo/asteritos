@@ -73,13 +73,13 @@ class Ship
   end
 
   def handle_input(dt)
-    if Gosu.button_down?(Gosu::KB_A)
+    if Gosu.button_down?(Gosu::KB_A) || Gosu.button_down?(Gosu::KB_LEFT)
       @direction -= MANEUVERABILITY * dt
-    elsif Gosu.button_down?(Gosu::KB_D)
+    elsif Gosu.button_down?(Gosu::KB_D) || Gosu.button_down?(Gosu::KB_RIGHT)
       @direction += MANEUVERABILITY * dt
     end
 
-    if Gosu.button_down?(Gosu::KB_W)
+    if Gosu.button_down?(Gosu::KB_W) || Gosu.button_down?(Gosu::KB_UP)
       @state = :moving
       thrust
     else
