@@ -47,7 +47,7 @@ Then do the following:
 
 ### Code
 
-This game's code is licensed under the [MIT license](/LICENSE).
+This game's code is licensed under the [MIT license](LICENSE).
 
 ### Assets
 
