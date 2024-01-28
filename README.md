@@ -5,8 +5,6 @@
 Entry for the [Gosu Game Jam 5](https://itch.io/jam/gosu-game-jam-5). It's a simple asteroids clone.
 While the core concept of asteroids is in the game it does have some different design choices here and there.
 
-(The code of the jam version is probably garbage so pleaso don't bash me too much I'll work on it :( )
-
 <p align="center">
   <img src="/docs/media/screenshot-1.png" alt="screenshot"/>
 </p>
