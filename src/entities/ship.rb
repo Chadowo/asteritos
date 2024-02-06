@@ -151,28 +151,29 @@ class Ship
     draw_bullets
 
     if @invulnerable
-      # Blink between being transparent and opaque
-      color = @blink ? Gosu::Color::WHITE : @invulnerability_color
+      draw_invulnerable
+      return
+    end
 
-      case @state
-      when :idle
-        @idle_sprite.draw_rot(@x, @y, 0,
-                         @direction, 0.5, 0.5,
-                         1.0, 1.0,
-                         color)
-      when :moving
-        @movement_anim.draw_rot(@x, @y, 0,
-                                @direction, 0.5, 0.5,
-                                1.0, 1.0,
-                                color)
-      end
-    else
-      case @state
-      when :idle
-        @idle_sprite.draw_rot(@x, @y, 0, @direction)
-      when :moving
-        @movement_anim.draw_rot(@x, @y, 0, @direction)
-      end
+    case @state
+    when :idle then @idle_sprite.draw_rot(@x, @y, 0, @direction)
+    when :moving then @movement_anim.draw_rot(@x, @y, 0, @direction)
+    end
+  end
+
+  def draw_invulnerable
+    # Blink between being transparent and opaque
+    color = @blink ? Gosu::Color::WHITE : @invulnerability_color
+
+    case @state
+    when :idle
+      @idle_sprite.draw_rot(@x, @y, 0,
+                            @direction, 0.5, 0.5,
+                            1.0, 1.0, color)
+    when :moving
+      @movement_anim.draw_rot(@x, @y, 0,
+                              @direction, 0.5, 0.5,
+                              1.0, 1.0, color)
     end
   end
 
