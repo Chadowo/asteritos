@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Reworked the asteroid sprite, now with 3 variants used randomly on gameplay.
+
 ### Changed
 
 - Now the bundle with Gosu-MRuby-Wrapper uses the fused way of loading.

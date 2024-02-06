@@ -4,9 +4,12 @@ class Asteroid
 
   MINIMUM_VELOCITY = 50
   MAXIMUM_VELOCITY = 150
+  ASTEROID_SPRITES = [Gosu::Image.new('assets/sprites/asteroid_1.png', retro: true),
+                      Gosu::Image.new('assets/sprites/asteroid_2.png', retro: true),
+                      Gosu::Image.new('assets/sprites/asteroid_3.png', retro: true)].freeze
 
   def initialize(x, y, size)
-    @sprite = Gosu::Image.new('assets/sprites/asteroid.png', retro: true)
+    @sprite = ASTEROID_SPRITES.sample
 
     @x = x
     @y = y
