@@ -202,7 +202,7 @@ class GameState < State
     score_color = @score > @highscore ? Gosu::Color::RED : Gosu::Color::WHITE
 
     @font.draw_text('LIVES', 20, 20, 0)
-    @font.draw_text(@lives.to_s, 40, 35, 0)
+    @font.draw_text(@lives.to_s, 42, 35, 0)
 
     @font.draw_text('SCORE', 100, 20, 0)
     @font.draw_text(@score.to_s, 120, 35, 0, 1.0, 1.0, score_color)
