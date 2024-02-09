@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.5] - 2024-02-08
+
 ### Added
 
 - Reworked the asteroid sprite, now with 3 variants used randomly on gameplay.
@@ -62,7 +64,8 @@ Quick patch to fix a little something.
 
 This is the version presented for the [Gosu Game Jam 5](https://itch.io/jam/gosu-game-jam-5).
 
-[unreleased]: https://github.com/chadowo/asteritos/compare/v1.1.4...HEAD
+[unreleased]: https://github.com/chadowo/asteritos/compare/v1.1.5...HEAD
+[1.1.5]: https://github.com/chadowo/asteritos/compare/v1.1.4...v1.1.5
 [1.1.4]: https://github.com/chadowo/asteritos/compare/v1.1.3...v1.1.4
 [1.1.3]: https://github.com/chadowo/asteritos/compare/v1.1.2...v1.1.3
 [1.1.2]: https://github.com/chadowo/asteritos/compare/v1.1.1...v1.1.2
