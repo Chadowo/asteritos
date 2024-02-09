@@ -17,6 +17,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Replaced the icon with the new asteroid sprite with a 2px thick outline.
 - Now the bundle with Gosu-MRuby-Wrapper uses the fused way of loading.
 
+## [1.1.4] - 2024-12-14
+
+### Changed
+
+- Just a little patch version to use a newer version of the [Gosu MRuby Wrapper](https://github.com/Chadowo/gosu-mruby-wrapper). Along with improvements the executables are now striped, so the size is significantly reduced, enjoy!
+
 ## [1.1.3] - 2023-11-18
 
 ### Added
@@ -56,7 +62,8 @@ Quick patch to fix a little something.
 
 This is the version presented for the [Gosu Game Jam 5](https://itch.io/jam/gosu-game-jam-5).
 
-[unreleased]: https://github.com/chadowo/asteritos/compare/v1.1.0...HEAD
+[unreleased]: https://github.com/chadowo/asteritos/compare/v1.1.4...HEAD
+[1.1.4]: https://github.com/chadowo/asteritos/compare/v1.1.3...v1.1.4
 [1.1.3]: https://github.com/chadowo/asteritos/compare/v1.1.2...v1.1.3
 [1.1.2]: https://github.com/chadowo/asteritos/compare/v1.1.1...v1.1.2
 [1.1.1]: https://github.com/chadowo/asteritos/compare/v1.1.0...v1.1.1
