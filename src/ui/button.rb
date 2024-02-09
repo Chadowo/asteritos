@@ -1,5 +1,5 @@
 class Button
-  attr_accessor :x, :y, :scale_x, :scale_y
+  attr_accessor :x, :y, :scale_x, :scale_y, :active
   attr_reader :label, :w, :h
 
   # FIXME: This is way to big
@@ -36,31 +36,20 @@ class Button
     click
   end
 
-  # NOTE: Collision checking doesn't appear to be exact on the y axis, it detects
-  #       a collision even though the button is a few pixels away from the mouse.
-  #       The problem isn't new to the button addition, It seems upon further
-  #       investigation that this may be related to the font, in which case there's
-  #       not a lot I can do
-  def highlight(window)
-    mouse_x = window.mouse_x
-    mouse_y = window.mouse_y
+  def select!
+    @select_sfx&.play unless @active # Unless active so it plays only one time
 
-    # FIXME: Halfways there, but I should for other solution most likely, this is plainly not elegant
-    if mouse_x >= x && mouse_x <= x + (@w * @scale_x) &&
-       mouse_y >= y && mouse_y <= y + (@h * @scale_y)
-    then
-      @select_sfx&.play unless @active # Unless active so it plays only one time
-
-      @active = true
-      @current_color = @active_color
-    else
-      @active = false
-      @current_color = @inactive_color
-    end
+    @active = true
+    @current_color = @active_color
   end
 
-  def click
-    return unless @active && Gosu.button_down?(Gosu::MS_LEFT)
+  def deselect!
+    @active = false
+    @current_color = @inactive_color
+  end
+
+  def use!
+    return unless @active
 
     @press_sfx&.play
     @action.call

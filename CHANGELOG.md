@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Reworked the asteroid sprite, now with 3 variants used randomly on gameplay.
+- Simple keyboard control on the main menu.
 
 ### Changed
 

@@ -4,6 +4,8 @@ class MenuState < State
   def enter(args); end
 
   def initialize(window)
+    initialize_audio
+
     @window = window
 
     @font = Gosu::Font.new(60, name: 'assets/fonts/nordine/nordine.ttf')
@@ -13,8 +15,6 @@ class MenuState < State
       lives: 3,
       difficulty: :normal
     }
-
-    initialize_audio
 
     # FIXME: Adding sound really doesn't make this better to the eye...
     @buttons = [
@@ -30,6 +30,7 @@ class MenuState < State
                  inactive_color: Gosu::Color::WHITE, active_color: Gosu::Color::RED,
                  select_sfx: @select_sfx, press_sfx: @press_sfx)
     ]
+    @button_cursor = nil
   end
 
   def initialize_audio
@@ -38,8 +39,75 @@ class MenuState < State
   end
 
   def update(dt)
+    buttons_handle_mouse
+  end
+
+  def button_down(key)
+    buttons_handle_keyboard(key)
+  end
+
+  def buttons_handle_mouse
     @buttons.each do |btn|
-      btn.check_mouse(@window) unless btn.label == 'Settings' # Not implemented yet
+      mouse_x = @window.mouse_x
+      mouse_y = @window.mouse_y
+
+      if mouse_x >= btn.x && mouse_x <= btn.x + (btn.w * btn.scale_x) &&
+         mouse_y >= btn.y && mouse_y <= btn.y + (btn.h * btn.scale_y)
+      then
+        btn.select! unless btn.label == 'Settings' # Not implemented yet
+        btn.use! if Gosu.button_down?(Gosu::MS_LEFT)
+      else
+        btn.deselect! unless !@button_cursor.nil? && btn == @buttons[@button_cursor]
+      end
+    end
+  end
+
+  def buttons_handle_keyboard(key)
+    if key == Gosu::KB_DOWN || key == Gosu::KB_S
+      # If it is nil then nothing was selected before, select the first
+      # button then
+      if @button_cursor.nil?
+        @button_cursor = 0
+        @buttons[@button_cursor].select!
+        return
+      end
+
+      # Make sure we're not out of the bounds of the buttons array
+      return if @button_cursor == @buttons.length - 1
+
+      # Deselect the previous button
+      @buttons[@button_cursor].deselect!
+      # We'll skip the settings one since it's not finished up yet
+      @button_cursor += if @buttons[@button_cursor + 1].label == 'Settings'
+                          2
+                        else
+                          1
+                        end
+    elsif key == Gosu::KB_UP || key == Gosu::KB_W
+      # If it is nil then nothing was selected before, select the first
+      # button then
+      if @button_cursor.nil?
+        @button_cursor = @buttons.length - 1
+        @buttons[@button_cursor].select!
+        return
+      end
+
+      # Make sure we're not out of the bounds of the buttons array
+      return if @button_cursor.zero?
+
+      # Deselect the previous button
+      @buttons[@button_cursor].deselect!
+      # We'll skip the settings one since it's not finished up yet
+      @button_cursor -= if @buttons[@button_cursor - 1].label == 'Settings'
+                          2
+                        else
+                          1
+                        end
+    end
+
+    if !@button_cursor.nil?
+      @buttons[@button_cursor].select!
+      @buttons[@button_cursor].use! if key == Gosu::KB_RETURN
     end
   end
 
