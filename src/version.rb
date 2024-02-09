@@ -1,7 +1,7 @@
 class AsteritosWindow < Gosu::Window
   MAJOR = 1
-  MINOR = 1
-  PATCH = 5
+  MINOR = 2
+  PATCH = 0
 
-  VERSION = "#{MAJOR}.#{MINOR}.#{PATCH}".freeze
+  VERSION = "#{MAJOR}.#{MINOR}.#{PATCH}-dev".freeze
 end
