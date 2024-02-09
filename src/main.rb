@@ -43,11 +43,6 @@ class AsteritosWindow < Gosu::Window
     @logger.info("Gosu version: v#{Gosu::VERSION}")
     @logger.info("Ruby version: #{RUBY_ENGINE == 'ruby' ? RUBY_DESCRIPTION : MRUBY_DESCRIPTION}")
     @logger.info('Have a good day ;)!')
-
-    @scale_x = 1.0
-    @scale_y = 1.0
-    @off_x = 0.0
-    @off_y = 0.0
   end
 
   def needs_cursor?
@@ -63,7 +58,6 @@ class AsteritosWindow < Gosu::Window
 
   def update
     @current_state.update(@dt)
-
     update_delta
 
     self.close if Gosu.button_down?(Gosu::KB_ESCAPE)
