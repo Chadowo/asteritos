@@ -15,12 +15,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Replaced the icon with the new asteroid sprite with a 2px thick outline.
-- Now the bundle with Gosu-MRuby-Wrapper uses the fused way of loading.
 
 ## [1.1.4] - 2024-12-14
 
 ### Changed
 
+- Now the bundle with Gosu-MRuby-Wrapper uses the fused way of loading.
 - Just a little patch version to use a newer version of the [Gosu MRuby Wrapper](https://github.com/Chadowo/gosu-mruby-wrapper). Along with improvements the executables are now striped, so the size is significantly reduced, enjoy!
 
 ## [1.1.3] - 2023-11-18
