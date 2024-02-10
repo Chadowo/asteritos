@@ -32,6 +32,8 @@ class AsteritosWindow < Gosu::Window
 
     @current_state = MenuState.new(self)
 
+    @transition_sound = Gosu::Sample.new('assets/sfx/menu/transition.wav')
+
     @logger = Logger.new(STDOUT)
     @logger.progname = 'Asteritos'
     @logger.formatter = proc do |severity, datetime, progname, msg|
@@ -43,22 +45,44 @@ class AsteritosWindow < Gosu::Window
     @logger.info("Gosu version: v#{Gosu::VERSION}")
     @logger.info("Ruby version: #{RUBY_ENGINE == 'ruby' ? RUBY_DESCRIPTION : MRUBY_DESCRIPTION}")
     @logger.info('Have a good day ;)!')
+
+    # TODO: Twenning
+    @next_state = nil
+    @next_state_args = nil
+    @transition_color = Gosu::Color.rgba(0, 0, 0, 0)
+    @transitioning = false
   end
 
   def needs_cursor?
     true
   end
 
-  def change_state(state, args)
-    @logger.info("Entered state #{state.class}")
+  def transition_done?
+    true if @transition_color.alpha == 255
+  end
 
-    state.enter(args)
-    @current_state = state
+  def change_state(state, args)
+    return if @transitioning
+
+    @next_state = state
+    @next_state_args = args
+
+    @transitioning = true
+    @logger.info("Changing to #{state.class} state")
   end
 
   def update
     @current_state.update(@dt)
     update_delta
+
+    @transition_color.alpha += 650 * @dt if @transitioning
+    @transition_color.alpha -= 650 * @dt if !@transitioning && !@transition_color.alpha.zero?
+    if transition_done?
+      @next_state.enter(@next_state_args)
+      @current_state = @next_state
+
+      @transitioning = false
+    end
 
     self.close if Gosu.button_down?(Gosu::KB_ESCAPE)
   end
@@ -75,6 +99,7 @@ class AsteritosWindow < Gosu::Window
 
   def draw
     @current_state.draw
+    Gosu.draw_rect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, @transition_color)
   end
 end
 

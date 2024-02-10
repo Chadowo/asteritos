@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Transitions between screens.
+
 ## [1.1.5] - 2024-02-08
 
 ### Added
