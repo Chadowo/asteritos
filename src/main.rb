@@ -70,7 +70,6 @@ class AsteritosWindow < Gosu::Window
   end
 
   def update
-    @current_state.update(@dt)
     update_delta
 
     @transition_color.alpha += 650 * @dt if @transitioning
@@ -82,10 +81,16 @@ class AsteritosWindow < Gosu::Window
       @transitioning = false
     end
 
+    return if @transitioning
+
+    @current_state.update(@dt)
+
     self.close if Gosu.button_down?(Gosu::KB_ESCAPE)
   end
 
   def button_down(key)
+    return if @transitioning # Stop player from pressing something while transitioning
+
     @current_state.button_down(key)
   end
 
