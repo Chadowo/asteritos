@@ -32,8 +32,6 @@ class AsteritosWindow < Gosu::Window
 
     @current_state = MenuState.new(self)
 
-    @transition_sound = Gosu::Sample.new('assets/sfx/menu/transition.wav')
-
     @logger = Logger.new(STDOUT)
     @logger.progname = 'Asteritos'
     @logger.formatter = proc do |severity, datetime, progname, msg|
