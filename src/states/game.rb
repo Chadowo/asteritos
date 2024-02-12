@@ -2,6 +2,8 @@ require 'entities/ship'
 require 'entities/bullet'
 require 'entities/asteroid'
 
+require 'screen_shake'
+
 require 'ui/blink_text'
 
 # FIXME: There's way too much logic in here
@@ -44,6 +46,9 @@ class GameState < State
     @pause_text = BlinkingText.new(@font, 'PAUSED', 0.4)
     @pause_text.scale_x = 1.4
     @pause_text.scale_y = 1.4
+
+    @shake_effect = ScreenShake.new(0.6, 4)
+    @should_shake = false
 
     initialize_entities
     initialize_audio
@@ -97,6 +102,7 @@ class GameState < State
     @player.x = AsteritosWindow::WINDOW_WIDTH / 2
     @player.y = AsteritosWindow::WINDOW_HEIGHT / 2
     @player.invulnerable!
+    @should_shake = true
   end
 
   def update(dt)
@@ -113,6 +119,12 @@ class GameState < State
     @player.update(dt)
     @asteroids.each do |asteroid|
       asteroid.update(dt)
+    end
+
+    @shake_effect.update(dt) if @should_shake
+    if @shake_effect.finished?
+      @should_shake = false
+      @shake_effect.reset
     end
 
     # Regenerate asteroids if necessary to keep the total asteroid
@@ -185,14 +197,16 @@ class GameState < State
   end
 
   def draw
-    @bg.draw(0, 0, 0)
+    Gosu.translate(@shake_effect.dx, @shake_effect.dy) do
+      @bg.draw(0, 0, 0)
 
-    @player.draw
-    @asteroids.each(&:draw)
+      @player.draw
+      @asteroids.each(&:draw)
 
-    draw_hud
-    draw_pause if @pause
-    draw_gameover if @gameover
+      draw_hud
+      draw_pause if @pause
+      draw_gameover if @gameover
+    end
   end
 
   def draw_hud
