@@ -72,8 +72,8 @@ class AsteritosWindow < Gosu::Window
   def update
     update_delta
 
-    # Increase or decrease the transition alpha depending on whether we're on
-    # a transition or not
+    # Increase alpha when transitioning, and decrease when the state has changed
+    # already
     # NOTE: The alpha is clamped automatically between 0 and 255
     @transition_color.alpha += 650 * @dt if @transitioning
     @transition_color.alpha -= 650 * @dt unless @transitioning
