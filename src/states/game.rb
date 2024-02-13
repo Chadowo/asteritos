@@ -13,9 +13,7 @@ class GameState < State
 
   # TODO: Change the game based on the options
   def enter(options)
-    unless options.nil?
-      @options = options
-    end
+    @options = options unless options.nil?
   end
 
   # TODO: Organize this
