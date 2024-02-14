@@ -48,6 +48,9 @@ class GameState < State
     @shake_effect = ScreenShake.new(0.6, 4)
     @should_shake = false
 
+    # TODO: Naming
+    @overlay_color = Gosu::Color.rgba(255, 0, 0, 0)
+
     initialize_entities
     initialize_audio
 
@@ -100,7 +103,9 @@ class GameState < State
     @player.x = AsteritosWindow::WINDOW_WIDTH / 2
     @player.y = AsteritosWindow::WINDOW_HEIGHT / 2
     @player.invulnerable!
+
     @should_shake = true
+    @overlay_color.alpha = 180
   end
 
   def update(dt)
@@ -124,6 +129,8 @@ class GameState < State
       @should_shake = false
       @shake_effect.reset
     end
+
+    @overlay_color.alpha -= 500 * dt if @overlay_color.alpha.positive?
 
     # Regenerate asteroids if necessary to keep the total asteroid
     # count equal to the required amount
@@ -205,6 +212,8 @@ class GameState < State
       draw_pause if @pause
       draw_gameover if @gameover
     end
+
+    Gosu.draw_rect(0, 0, AsteritosWindow::WINDOW_WIDTH, AsteritosWindow::WINDOW_HEIGHT, @overlay_color)
   end
 
   def draw_hud

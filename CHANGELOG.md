@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Transitions between screens.
 - Screen shake effect.
+- Tint the screen red when the player dies.
 
 ## [1.1.5] - 2024-02-08
 
