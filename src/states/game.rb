@@ -134,7 +134,7 @@ class GameState < State
 
     # Regenerate asteroids if necessary to keep the total asteroid
     # count equal to the required amount
-    generate_asteroids(1) if (@asteroids.count + 1) < ASTEROIDS_AMOUNT
+    generate_asteroids(1) if @asteroids.count < ASTEROIDS_AMOUNT
 
     player_collisions
     bullets_collisions
