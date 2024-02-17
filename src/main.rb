@@ -117,7 +117,7 @@ end
 game = AsteritosWindow.new
 begin
   game.show
-rescue Exception => e
+rescue Exception => e # rubocop:disable Lint/RescueException
   game.logger.fatal("An exception has ocurred: #{e}")
   game.logger.fatal("Backtrace: #{e.backtrace.join("\n\t")}")
   raise e
