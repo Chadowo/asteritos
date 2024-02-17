@@ -1,9 +1,10 @@
+require 'state'
+
 require 'entities/ship'
 require 'entities/bullet'
 require 'entities/asteroid'
 
 require 'screen_shake'
-
 require 'ui/blink_text'
 
 # FIXME: There's way too much logic in here

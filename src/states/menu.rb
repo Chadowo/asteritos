@@ -1,3 +1,4 @@
+require 'state'
 require 'ui/button'
 
 class MenuState < State
