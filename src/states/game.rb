@@ -168,16 +168,16 @@ class GameState < State
   def player_collisions
     colliding_asteroid = @asteroids.find { |asteroid| collision?(@player, asteroid) }
 
-    if colliding_asteroid && !@player.invulnerable?
-      @player_destroyed_sfx.play
-      split_asteroid(colliding_asteroid)
+    return unless colliding_asteroid && !@player.invulnerable?
 
-      if @lives.zero?
-        @gameover = true
-      else
-        @lives -= 1
-        reset_player
-      end
+    @player_destroyed_sfx.play
+    split_asteroid(colliding_asteroid)
+
+    if @lives.zero?
+      @gameover = true
+    else
+      @lives -= 1
+      reset_player
     end
   end
 
