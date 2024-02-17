@@ -1,7 +1,7 @@
 require 'gosu' # Version file will error out otherwise
 require_relative 'src/version'
 
-task :default => :run
+task default: :run
 
 desc 'Run the game'
 task :run do
