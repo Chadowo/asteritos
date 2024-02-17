@@ -6,7 +6,6 @@ unless RUBY_ENGINE == 'mruby'
   require 'logger'
 end
 
-require 'mruby'
 require 'states/menu'
 require 'states/game'
 require 'version'

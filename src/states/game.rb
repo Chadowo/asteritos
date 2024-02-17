@@ -1,4 +1,5 @@
 require 'state'
+require 'mruby_compatibility'
 
 require 'entities/ship'
 require 'entities/bullet'
@@ -73,8 +74,8 @@ class GameState < State
   def generate_asteroids(num)
     # Populate asteroids
     num.times do
-      asteroid = Asteroid.new(MRuby.rand(0..AsteritosWindow::WINDOW_WIDTH),
-                              MRuby.rand(0..AsteritosWindow::WINDOW_HEIGHT),
+      asteroid = Asteroid.new(MRubyCompatibility.rand(0..AsteritosWindow::WINDOW_WIDTH),
+                              MRubyCompatibility.rand(0..AsteritosWindow::WINDOW_HEIGHT),
                               2)
 
       # Don't generate asteroids close enough to spawn-kill the player

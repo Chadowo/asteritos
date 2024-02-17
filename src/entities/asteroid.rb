@@ -1,3 +1,5 @@
+require 'mruby_compatibility'
+
 class Asteroid
   attr_accessor :velocity, :size
   attr_reader :x, :y, :w, :h, :radius
@@ -27,8 +29,8 @@ class Asteroid
   end
 
   def random_velocity(min, max)
-    @velocity = MRuby.rand(min..max)
-    @direction = MRuby.rand(0..360)
+    @velocity = MRubyCompatibility.rand(min..max)
+    @direction = MRubyCompatibility.rand(0..360)
   end
 
   def update(dt)
