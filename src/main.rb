@@ -38,7 +38,7 @@ class AsteritosWindow < Gosu::Window
     @transitioning = false
 
     # Logging related things, pretty trivial
-    @logger = Logger.new(STDOUT)
+    @logger = Logger.new($stdout)
     @logger.progname = 'Asteritos'
     @logger.formatter = proc do |severity, datetime, progname, msg|
       "[#{datetime}] #{severity.ljust(5)} -- #{progname}: #{msg}\n"
@@ -90,8 +90,8 @@ class AsteritosWindow < Gosu::Window
     # Increase alpha when transitioning, and decrease when the state has changed
     # already
     # NOTE: The alpha is clamped automatically between 0 and 255
-    @transition_color.alpha += TRANSITION_SPEED * @dt if @transitioning
-    @transition_color.alpha -= TRANSITION_SPEED * @dt unless @transitioning
+    @transition_color.alpha += TRANSITION_SPEED * dt if @transitioning
+    @transition_color.alpha -= TRANSITION_SPEED * dt unless @transitioning
 
     return unless transition_done?
 
