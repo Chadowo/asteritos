@@ -3,10 +3,6 @@
 # to keep uniformity between actions with multiple
 # keybindings and others with one
 module Controls
-  # TODO: I'm thinking it's fairly better to make
-  #       a "key_down" method here so I don't have
-  #
-
   UP = Set[Gosu::KB_W, Gosu::KB_UP]
   DOWN = Set[Gosu::KB_S, Gosu::KB_DOWN]
   LEFT = Set[Gosu::KB_A, Gosu::KB_LEFT]
