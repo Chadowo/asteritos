@@ -1,4 +1,5 @@
 require 'state'
+require 'controls'
 require 'ui/button'
 
 class MenuState < State
@@ -39,7 +40,7 @@ class MenuState < State
     @press_sfx = Gosu::Sample.new('assets/sfx/menu/press.wav')
   end
 
-  def update(dt)
+  def update(_dt)
     buttons_handle_mouse
   end
 
@@ -64,7 +65,7 @@ class MenuState < State
   end
 
   def buttons_handle_keyboard(key)
-    if key == Gosu::KB_DOWN || key == Gosu::KB_S
+    if Controls::DOWN.include?(key)
       # If it is nil then nothing was selected before, select the first
       # button then
       if @button_cursor.nil?
@@ -84,7 +85,7 @@ class MenuState < State
                         else
                           1
                         end
-    elsif key == Gosu::KB_UP || key == Gosu::KB_W
+    elsif Controls::UP.include?(key)
       # If it is nil then nothing was selected before, select the first
       # button then
       if @button_cursor.nil?
@@ -106,9 +107,9 @@ class MenuState < State
                         end
     end
 
-    if !@button_cursor.nil?
+    unless @button_cursor.nil?
       @buttons[@button_cursor].select!
-      @buttons[@button_cursor].use! if key == Gosu::KB_RETURN
+      @buttons[@button_cursor].use! if Controls::ENTER.include?(key)
     end
   end
 
@@ -157,12 +158,11 @@ class MenuState < State
       btn.x = (ww / 2) - (width / 2)
       btn.y = (wh / 2 + 100) - total_height / 2 + cursor_y
 
-      @font.draw_text('<- Not implemented yet!',
-                      btn.x + 130,
-                      btn.y + 2,
-                      0,
-                      0.3,
-                      0.3) if btn.label == 'Settings'
+      if btn.label == 'Settings'
+        @font.draw_text('<- Not implemented yet!',
+                        btn.x + 130, btn.y + 2, 0,
+                        0.3, 0.3)
+      end
 
       btn.draw
 

@@ -1,11 +1,12 @@
 require 'state'
+require 'screen_shake'
+require 'controls'
 require 'mruby_compatibility'
 
 require 'entities/ship'
 require 'entities/bullet'
 require 'entities/asteroid'
 
-require 'screen_shake'
 require 'ui/blink_text'
 
 # FIXME: There's way too much logic in here
@@ -148,7 +149,7 @@ class GameState < State
   end
 
   def handle_pause(key)
-    return unless key == Gosu::KB_RETURN && !@gameover
+    return unless Controls::ENTER.include?(key) && !@gameover
 
     # So when the pause starts the text will always be shown
     @pause_text.timer = 0.0
@@ -159,7 +160,7 @@ class GameState < State
   end
 
   def update_gameover_screen
-    return unless Gosu.button_down?(Gosu::KB_RETURN)
+    return unless Controls.pressed?(Controls::ENTER)
 
     save_score(@score) if @score > @highscore
     @window.change_state(MenuState.new(@window), nil)

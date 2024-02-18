@@ -1,4 +1,5 @@
 require 'aniruby'
+require 'controls'
 
 class Ship
   attr_accessor :x, :y, :invulnerable
@@ -66,20 +67,17 @@ class Ship
   end
 
   def button_down(key)
-    case key
-    when Gosu::KB_SPACE
-      shoot if (@bullets.count + 1) <= MAX_BULLETS
-    end
+    shoot if Controls::FIRE.include?(key) && (@bullets.count + 1) <= MAX_BULLETS
   end
 
   def handle_input(dt)
-    if Gosu.button_down?(Gosu::KB_A) || Gosu.button_down?(Gosu::KB_LEFT)
+    if Controls.pressed?(Controls::LEFT)
       @direction -= MANEUVERABILITY * dt
-    elsif Gosu.button_down?(Gosu::KB_D) || Gosu.button_down?(Gosu::KB_RIGHT)
+    elsif Controls.pressed?(Controls::RIGHT)
       @direction += MANEUVERABILITY * dt
     end
 
-    if Gosu.button_down?(Gosu::KB_W) || Gosu.button_down?(Gosu::KB_UP)
+    if Controls.pressed?(Controls::UP)
       @state = :moving
       thrust
     else

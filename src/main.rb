@@ -4,8 +4,10 @@ $: << 'src/libs/aniruby'
 unless RUBY_ENGINE == 'mruby'
   require 'gosu'
   require 'logger'
+  require 'set'
 end
 
+require 'controls'
 require 'states/menu'
 require 'states/game'
 require 'version'
@@ -77,7 +79,7 @@ class AsteritosWindow < Gosu::Window
     return if @transitioning
 
     @states.last.update(@dt)
-    self.close if Gosu.button_down?(Gosu::KB_ESCAPE)
+    close if Controls.pressed?(Controls::CLOSE)
   end
 
   def update_delta
