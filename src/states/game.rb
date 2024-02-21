@@ -1,11 +1,11 @@
-require 'state'
-require 'screen_shake'
 require 'controls'
 require 'mruby_compatibility'
+require 'state'
+require 'screen_shake'
 
-require 'entities/ship'
-require 'entities/bullet'
 require 'entities/asteroid'
+require 'entities/bullet'
+require 'entities/ship'
 
 require 'ui/blink_text'
 

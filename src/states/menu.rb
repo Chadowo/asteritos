@@ -1,5 +1,6 @@
-require 'state'
 require 'controls'
+require 'state'
+
 require 'ui/button'
 
 class MenuState < State

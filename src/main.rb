@@ -8,9 +8,10 @@ unless RUBY_ENGINE == 'mruby'
 end
 
 require 'controls'
+require 'version'
+
 require 'states/menu'
 require 'states/game'
-require 'version'
 
 # The principal window of the game, also works as a
 # state manager/controller too via a stack of states
