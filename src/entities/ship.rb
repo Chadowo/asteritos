@@ -17,7 +17,7 @@ class Ship
   def initialize(x, y)
     @idle_sprite = Gosu::Image.new('assets/sprites/ship.png', retro: true)
     @movement_anim = AniRuby::Animation.new('assets/sprites/ship_movement.png',
-                                            32, 32, retro: true, loop: true)
+                                            32, 32, retro: true)
     @state = :idle
 
     @x = x
