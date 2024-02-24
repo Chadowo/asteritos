@@ -9,10 +9,10 @@ class Ship
   MANEUVERABILITY = 300
   FRICTION = 0.99
 
-  MAX_BULLETS = 3
-  INVULNERABILITY_DURATION = 3.0 # Seconds
+  INVULNERABILITY_DURATION = 3.0
+  BLINK_INTERVAL = 0.2
 
-  BLINK_INTERVAL = 0.2 # 200ms
+  MAX_BULLETS = 3
 
   def initialize(x, y)
     @idle_sprite = Gosu::Image.new('assets/sprites/ship.png', retro: true)
