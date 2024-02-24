@@ -1,8 +1,10 @@
-require 'mruby_compatibility'
+require 'random_ext'
 
 class Asteroid
   attr_accessor :velocity, :size
   attr_reader :x, :y, :w, :h, :radius
+
+  using RandomExt
 
   MINIMUM_VELOCITY = 50
   MAXIMUM_VELOCITY = 150
@@ -29,8 +31,8 @@ class Asteroid
   end
 
   def random_velocity(min, max)
-    @velocity = MRubyCompatibility.rand(min..max)
-    @direction = MRubyCompatibility.rand(0..360)
+    @velocity = rand(min..max)
+    @direction = rand(0..360)
   end
 
   def update(dt)

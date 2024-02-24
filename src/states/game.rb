@@ -1,5 +1,5 @@
 require 'controls'
-require 'mruby_compatibility'
+require 'random_ext'
 require 'state'
 require 'screen_shake'
 
@@ -11,6 +11,8 @@ require 'ui/blink_text'
 
 # FIXME: There's way too much logic in here
 class GameState < State
+  using RandomExt
+
   MINIMUM_SHIP_DISTANCE = 250
   ASTEROIDS_AMOUNT = 6
 
@@ -75,8 +77,8 @@ class GameState < State
   def generate_asteroids(num)
     # Populate asteroids
     num.times do
-      asteroid = Asteroid.new(MRubyCompatibility.rand(0..AsteritosWindow::WINDOW_WIDTH),
-                              MRubyCompatibility.rand(0..AsteritosWindow::WINDOW_HEIGHT),
+      asteroid = Asteroid.new(rand(0..AsteritosWindow::WINDOW_WIDTH),
+                              rand(0..AsteritosWindow::WINDOW_HEIGHT),
                               2)
 
       # Don't generate asteroids close enough to spawn-kill the player
