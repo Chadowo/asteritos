@@ -113,7 +113,7 @@ class AsteritosWindow < Gosu::Window
 
   def draw
     @states.last.draw
-    Gosu.draw_rect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, @transition_color)
+    Gosu.draw_rect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, @transition_color, 2)
   end
 end
 
