@@ -22,7 +22,7 @@ That's it, it's not a particularly taxing game at all :).
 
 ## Controls
 
-This game is played with both a mouse and keyboard, using the mouse to navigate the menus.
+This game is played with a keyboard, menu navigation can be done with both mouse and keyboard.
 
 <kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd> or <kbd>↑</kbd> <kbd>←</kbd> <kbd>→</kbd> <kbd>↓</kbd> - Movement
 
