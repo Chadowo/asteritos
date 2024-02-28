@@ -51,8 +51,8 @@ This game's code is licensed under the [MIT License](LICENSE).
 
 ### Assets
 
-Note that all the assets (namely all the files under [assets/](/assets)) are not open-source unless explicitly said so. Check the
-credits below to see the assets licensed differently.
+Note that all the assets (namely all the files under [assets/](/assets)) are not open-source and are
+distributed under the [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) license unless noted otherwise.
 
 ## Credits
 
