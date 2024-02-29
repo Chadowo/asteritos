@@ -56,4 +56,4 @@ distributed under the [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) 
 
 ## Credits
 
-Nordine Font - Liam Moniez - [OFL 1.1 License](/assets/fonts/nordine/license.txt) - [Site](https://www.behance.net/agraffs)
+Nordine Font - [Liam Moniez](https://www.behance.net/agraffs) - [OFL 1.1 License](/assets/fonts/nordine/license.txt)
