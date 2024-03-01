@@ -37,8 +37,8 @@ class MenuState < State
   end
 
   def initialize_audio
-    @select_sfx = Gosu::Sample.new('assets/sfx/menu/select.wav')
-    @press_sfx = Gosu::Sample.new('assets/sfx/menu/press.wav')
+    @select_sfx = Gosu::Sample.new('assets/sfx/menu/select.ogg')
+    @press_sfx = Gosu::Sample.new('assets/sfx/menu/press.ogg')
   end
 
   def update(_dt)
