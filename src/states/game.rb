@@ -38,9 +38,9 @@ class GameState < State
     @bg = Gosu::Image.new('assets/sprites/bg.png')
 
     @score = 0
-    @highscore = if File.exist?('data/score.txt')
+    @highscore = if File.exist?('data/score.dat')
                    @logger.info('Highscore found')
-                   File.read('data/score.txt').to_i
+                   File.read('data/score.dat').to_i
                  else
                    0
                  end
@@ -127,10 +127,10 @@ class GameState < State
   end
 
   def save_score(score)
-    @logger.info("Saving score (#{score}) as highscore on 'data/score.txt'")
+    @logger.info("Saving score (#{score}) as highscore on 'data/score.dat'")
 
     Dir.mkdir('data') unless Dir.exist?('data')
-    File.open('data/score.txt', 'w') { |file| file.write(score) }
+    File.open('data/score.dat', 'w') { |file| file.write(score) }
   end
 
   def update(dt)
