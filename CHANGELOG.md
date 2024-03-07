@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Save data now uses the `.dat` extension.
+- The player movement is faster.
 
 ## [1.1.5] - 2024-02-08
 

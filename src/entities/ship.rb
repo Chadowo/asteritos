@@ -5,7 +5,7 @@ class Ship
   attr_accessor :x, :y, :invulnerable
   attr_reader :w, :h, :radius, :bullets
 
-  SPEED = 100
+  SPEED = 150
   MANEUVERABILITY = 300
   FRICTION = 0.99
 
@@ -66,25 +66,6 @@ class Ship
     wrap_movement
   end
 
-  def update_invulnerability_timer(dt)
-    @invulnerability_timer += dt
-
-    @invulnerable = false if @invulnerability_timer >= INVULNERABILITY_DURATION
-  end
-
-  def update_blink_timer(dt)
-    @blink_timer += dt
-
-    return unless @blink_timer >= BLINK_INTERVAL
-
-    @blink = !@blink
-    @blink_timer = 0.0
-  end
-
-  def button_down(key)
-    shoot if Controls::FIRE.include?(key) && (@bullets.count + 1) <= MAX_BULLETS
-  end
-
   def handle_input(dt)
     if Controls.pressed?(Controls::LEFT)
       @direction -= MANEUVERABILITY * dt
@@ -117,6 +98,21 @@ class Ship
     @bullets.delete_if(&:dead?)
   end
 
+  def update_invulnerability_timer(dt)
+    @invulnerability_timer += dt
+
+    @invulnerable = false if @invulnerability_timer >= INVULNERABILITY_DURATION
+  end
+
+  def update_blink_timer(dt)
+    @blink_timer += dt
+
+    return unless @blink_timer >= BLINK_INTERVAL
+
+    @blink = !@blink
+    @blink_timer = 0.0
+  end
+
   def wrap_movement
     # NOTE: substract the checks against the right and bottom bounds since we're
     #       drawing the ship with its origin as the center of the image
@@ -134,6 +130,10 @@ class Ship
     elsif @y + @h <= 0
       @y = AsteritosWindow::WINDOW_HEIGHT
     end
+  end
+
+  def button_down(key)
+    shoot if Controls::FIRE.include?(key) && (@bullets.count + 1) <= MAX_BULLETS
   end
 
   def thrust
