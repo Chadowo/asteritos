@@ -66,6 +66,21 @@ class Ship
     wrap_movement
   end
 
+  def update_invulnerability_timer(dt)
+    @invulnerability_timer += dt
+
+    @invulnerable = false if @invulnerability_timer >= INVULNERABILITY_DURATION
+  end
+
+  def update_blink_timer(dt)
+    @blink_timer += dt
+
+    return unless @blink_timer >= BLINK_INTERVAL
+
+    @blink = !@blink
+    @blink_timer = 0.0
+  end
+
   def button_down(key)
     shoot if Controls::FIRE.include?(key) && (@bullets.count + 1) <= MAX_BULLETS
   end
@@ -100,21 +115,6 @@ class Ship
 
     # Trim bullet array
     @bullets.delete_if(&:dead?)
-  end
-
-  def update_invulnerability_timer(dt)
-    @invulnerability_timer += dt
-
-    @invulnerable = false if @invulnerability_timer >= INVULNERABILITY_DURATION
-  end
-
-  def update_blink_timer(dt)
-    @blink_timer += dt
-
-    if @blink_timer >= BLINK_INTERVAL
-      @blink = !@blink
-      @blink_timer = 0.0
-    end
   end
 
   def wrap_movement
