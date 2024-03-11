@@ -45,14 +45,14 @@ Then do the following:
 
 ## License
 
-### Code
-
-This game's code is licensed under the [MIT license](LICENSE).
-
 ### Assets
 
 Note that all the assets (namely all the files under [assets/](/assets)) are not open-source and are
 distributed under the [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) license unless noted otherwise.
+
+### Code
+
+This game's code is licensed under the [MIT license](LICENSE)
 
 ## Credits
 
