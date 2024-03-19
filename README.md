@@ -4,7 +4,7 @@
 
 ![GitHub release (with filter)](https://img.shields.io/github/v/release/chadowo/asteritos?style=flat-square) ![GitHub](https://img.shields.io/github/license/chadowo/asteritos?style=flat-square&color=blue) ![Static Badge](https://img.shields.io/badge/get%20it-green?style=flat-square&logo=itch.io&logoColor=white&label=itch.io&color=fa5c5c&link=https%3A%2F%2Fchadow.itch.io%2Fasteritos)
 
-Entry for the [Gosu Game Jam 5](https://itch.io/jam/gosu-game-jam-5). It's a simple asteroids clone.
+Entry for the [Gosu Game Jam 5](https://itch.io/jam/gosu-game-jam-5). It's a simple [Asteroids](https://en.wikipedia.org/wiki/Asteroids_(video_game)) clone.
 While the core concept of asteroids is in the game it does have some different design choices here and there.
 
 <p align="center">
@@ -36,23 +36,23 @@ This game is played with a keyboard, menu navigation can be done with both mouse
 
 ### Download
 
-Either download the game from the [releases](https://github.com/Chadowo/asteritos/releases) here on Github or from the [Itch.io page](https://chadow.itch.io/asteritos).
-Then do the following:
+Either download the game from the [releases](https://github.com/Chadowo/asteritos/releases) here on GitHub or from the [itch.io page](https://chadow.itch.io/asteritos).
 
-1. Download [Ruby](https://www.ruby-lang.org/) for your platform ([Window](https://rubyinstaller.org/), [MacOS](https://www.ruby-lang.org/en/documentation/installation/#homebrew) or [Linux](https://www.ruby-lang.org/en/documentation/installation/#apt))
-2. Install [Gosu](https://www.libgosu.org/ruby.html) and Rake (`gem install rake`)
-3. Run the following command on the folder of the game: `rake`
+If you want to run the game from the source code, then do the following:
+
+1. Download [Ruby](https://www.ruby-lang.org/) for your platform ([Windows](https://rubyinstaller.org/), [MacOS](https://www.ruby-lang.org/en/documentation/installation/#homebrew) or [Linux](https://www.ruby-lang.org/en/documentation/installation/#apt)).
+2. Install all the requirements for Gosu ([MacOS](https://github.com/gosu/gosu/wiki/Getting-Started-on-OS-X#prerequisites) or [Linux](https://github.com/gosu/gosu/wiki/Getting-Started-on-Linux#dependencies)).
+3. Invoke `bundle install` on the root of this repo, and then `rake` to run the game.
 
 ## License
 
 ### Assets
 
-Note that all the assets (namely all the files under [assets/](/assets)) are not open-source and are
-distributed under the [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) license unless noted otherwise.
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) unless noted otherwise.
 
 ### Code
 
-This game's code is licensed under the [MIT license](LICENSE)
+[MIT license](LICENSE).
 
 ## Credits
 
